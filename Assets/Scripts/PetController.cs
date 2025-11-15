@@ -32,4 +32,24 @@ public class PetController : MonoBehaviour
             timer -= interval;
         }
     }
+
+    public void IncreaseHungerLevel(int amount)
+    {
+        hunger += amount;
+        Debug.Log("Increase hunger level by " + amount);
+    }
+
+    
+    public void IncreaseIntimacyLevel(int amount)
+    {
+        intimacyLevel += amount;
+        Debug.Log("Increase intimacy level by " + amount);
+    }
+
+    
+    public void IncreaseLifeEssenceLevel(int amount)
+    {
+        lifeEssence += amount;
+        Debug.Log("Increase life essence level by " + amount);
+    }
 }
