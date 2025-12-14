@@ -826,14 +826,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c80e91b3ff1754e97268d9e6348cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PetController
-  intimacyLevel: 0
-  hunger: 100
-  lifeEssence: 100
-  decreaseHunger: 10
-  decreaseLifeEssence: 10
-  starved: 0
-  outOfEssence: 0
-  interval: 5
+  intimacyLevel: 3
+  hunger: 50
+  lifeEssence: 50
+  decreaseHunger: 0
+  decreaseLifeEssence: 0
+  petImage: {fileID: 563154583}
+  normalPet: {fileID: -7072794617722208771, guid: b405b666ff9e1d14da5d55cb46811d9f, type: 3}
+  angryPet: {fileID: -1454768351284797221, guid: 64621f4ca30e2244d8323d16ac46f4c8, type: 3}
+  state: 0
+  interval: 2
 --- !u!114 &563154583
 MonoBehaviour:
   m_ObjectHideFlags: 0

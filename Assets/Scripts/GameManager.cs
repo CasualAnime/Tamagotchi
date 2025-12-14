@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         // update slider for each bar
         UpdateBar();
+        CheckStats();
     }
 
     private void UpdateBar()
@@ -49,6 +51,24 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(Pet.intimacyLevel);
         Intimacy.SetValue(Pet.intimacyLevel);
+    }
+
+    private void CheckStats()
+    {
+        if (Pet.hunger <= 25)
+            Pet.state = PetController.DisplayPetState.Hungry;
+        else if (Pet.lifeEssence <= 25)
+            Pet.state = PetController.DisplayPetState.Drained;
+        else if (Pet.intimacyLevel <= 3)
+            Pet.state = PetController.DisplayPetState.Angry;
+        else if (Pet.hunger == 100)
+            Pet.state = PetController.DisplayPetState.Full;
+        else if (Pet.lifeEssence == 100)
+            Pet.state = PetController.DisplayPetState.MPFull;
+        else if (Pet.intimacyLevel > 6)
+            Pet.state = PetController.DisplayPetState.Happy;
+        else
+            Pet.state = PetController.DisplayPetState.Normal;
     }
 
     public void IncreaseHungerLevel(int increase)
