@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,19 @@ public class GameManager : MonoBehaviour
         // update slider for each bar
         UpdateBar();
         CheckStats();
+        CheckButtons();
+    }
+
+    private void CheckButtons()
+    {
+        if (Pet.hunger == 100) HungerButton.TurnOff();
+        else HungerButton.TurnOn();
+
+        if (Pet.lifeEssence == 100) LifeEssenceButton.TurnOff();
+        else LifeEssenceButton.TurnOn();
+
+        if (Pet.intimacyLevel == 10) PlayButton.TurnOff();
+        else PlayButton.TurnOn();
     }
 
     private void UpdateBar()
@@ -55,20 +69,13 @@ public class GameManager : MonoBehaviour
 
     private void CheckStats()
     {
-        if (Pet.hunger <= 25)
-            Pet.state = PetController.DisplayPetState.Hungry;
-        else if (Pet.lifeEssence <= 25)
-            Pet.state = PetController.DisplayPetState.Drained;
-        else if (Pet.intimacyLevel <= 3)
-            Pet.state = PetController.DisplayPetState.Angry;
-        else if (Pet.hunger == 100)
-            Pet.state = PetController.DisplayPetState.Full;
-        else if (Pet.lifeEssence == 100)
-            Pet.state = PetController.DisplayPetState.MPFull;
-        else if (Pet.intimacyLevel > 6)
-            Pet.state = PetController.DisplayPetState.Happy;
-        else
-            Pet.state = PetController.DisplayPetState.Normal;
+        if (Pet.hunger <= 25) Pet.state = PetController.DisplayPetState.Hungry;
+        else if (Pet.lifeEssence <= 25) Pet.state = PetController.DisplayPetState.Drained;
+        else if (Pet.intimacyLevel <= 3) Pet.state = PetController.DisplayPetState.Angry;
+        else if (Pet.hunger == 100) Pet.state = PetController.DisplayPetState.Full;
+        else if (Pet.lifeEssence == 100) Pet.state = PetController.DisplayPetState.MPFull;
+        else if (Pet.intimacyLevel > 6) Pet.state = PetController.DisplayPetState.Happy;
+        else Pet.state = PetController.DisplayPetState.Normal;
     }
 
     public void IncreaseHungerLevel(int increase)

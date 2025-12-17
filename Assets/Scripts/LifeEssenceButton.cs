@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeEssenceButton : MonoBehaviour
 {
+    [SerializeField] Button thisButton;
     [SerializeField] int lifeEssence = 5;
 
     void Awake()
@@ -12,5 +14,15 @@ public class LifeEssenceButton : MonoBehaviour
     public void OnButtonClick()
     {
         GameManager.Instance.IncreaseLifeEssenceLevel(lifeEssence);
+    }
+
+    public void TurnOff()
+    {
+        thisButton.interactable = false;
+    }
+
+    public void TurnOn()
+    {
+        thisButton.interactable = true;
     }
 }

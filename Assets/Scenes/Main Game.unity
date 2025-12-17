@@ -638,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8250ec42ec2c6f34981889ae27ba96e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HungerButton
+  thisButton: {fileID: 171260031}
   feed: 5
 --- !u!1 &519420028
 GameObject:
@@ -829,13 +830,20 @@ MonoBehaviour:
   intimacyLevel: 3
   hunger: 50
   lifeEssence: 50
-  decreaseHunger: 0
-  decreaseLifeEssence: 0
+  decreaseHunger: 10
+  decreaseLifeEssence: 10
+  decreaseIntimacyLevel: 1
   petImage: {fileID: 563154583}
-  normalPet: {fileID: -7072794617722208771, guid: b405b666ff9e1d14da5d55cb46811d9f, type: 3}
-  angryPet: {fileID: -1454768351284797221, guid: 64621f4ca30e2244d8323d16ac46f4c8, type: 3}
+  spriteList:
+  - {fileID: -7072794617722208771, guid: b405b666ff9e1d14da5d55cb46811d9f, type: 3}
+  - {fileID: -1454768351284797221, guid: 64621f4ca30e2244d8323d16ac46f4c8, type: 3}
+  - {fileID: 6423519535261529797, guid: b2dbaba5ff7816a40b0f34aadf3b6fe1, type: 3}
+  - {fileID: 8051860622388723996, guid: 58fbbdf83c8bb564980d911a43ffb153, type: 3}
+  - {fileID: 4574006155836517339, guid: fefe3079d6f4bb94cab52229fb0d10ae, type: 3}
+  - {fileID: -6957435702585939711, guid: b914ace8b8adf3d449ade033debd7d55, type: 3}
+  - {fileID: -5645803476900111494, guid: 29e7db5a5264bc7419f53a3c304745ad, type: 3}
   state: 0
-  interval: 2
+  maxTimerInterval: 15
 --- !u!114 &563154583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e86843997f04024aa88b229163f89b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeEssenceButton
+  thisButton: {fileID: 1903829334}
   lifeEssence: 5
 --- !u!1 &715928759
 GameObject:
@@ -1385,6 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7e820619844794194ee4aa7eb87765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayButton
+  thisButton: {fileID: 338388452}
   intimacyIncrease: 1
 --- !u!1 &1099045950
 GameObject:
