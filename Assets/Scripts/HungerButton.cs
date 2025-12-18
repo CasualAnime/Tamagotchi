@@ -6,7 +6,7 @@ public class HungerButton : MonoBehaviour
 {
     [SerializeField] Button thisButton;
     [SerializeField] int feed = 5;
-
+    [SerializeField] AudioManager audioManager;
 
     void Awake()
     {
@@ -16,6 +16,7 @@ public class HungerButton : MonoBehaviour
     public void OnButtonClick()
     {
        GameManager.Instance.IncreaseHungerLevel(feed); 
+       audioManager.PlayButtonSound();
     }
 
     public void TurnOff()

@@ -5,6 +5,7 @@ public class LifeEssenceButton : MonoBehaviour
 {
     [SerializeField] Button thisButton;
     [SerializeField] int lifeEssence = 5;
+    [SerializeField] AudioManager audioManager;
 
     void Awake()
     {
@@ -14,6 +15,7 @@ public class LifeEssenceButton : MonoBehaviour
     public void OnButtonClick()
     {
         GameManager.Instance.IncreaseLifeEssenceLevel(lifeEssence);
+        audioManager.PlayButtonSound();
     }
 
     public void TurnOff()

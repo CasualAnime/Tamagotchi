@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PetController : MonoBehaviour
 {
+    [SerializeField] AudioManager audioManager;
+
     [SerializeField] const int max_value = 100, min_value = 0, max_intimacy_level = 10;
 
     // pet need variables
@@ -27,11 +29,10 @@ public class PetController : MonoBehaviour
     }
     public DisplayPetState state;
 
-
     // timer 
-    private float hungerTimer = 0f, essenceTimer = 0f, intimacyTimer = 0f;
-    private float hungerDecreaseInterval, essenceDecreaseInterval,intimacyDecreaseInterval; 
-    [SerializeField] float maxTimerInterval;
+    private float timer = 0f, hungerTimer = 0f, essenceTimer = 0f, intimacyTimer = 0f;
+    private float hungerDecreaseInterval, essenceDecreaseInterval, intimacyDecreaseInterval; 
+    [SerializeField] float maxTimerInterval, minTimerInterval;
 
     private void Awake()
     {
@@ -40,19 +41,34 @@ public class PetController : MonoBehaviour
 
     private void Start()
     {
-        hungerDecreaseInterval = Random.Range(0f, maxTimerInterval);
-        essenceDecreaseInterval = Random.Range(0f, maxTimerInterval);
-        intimacyDecreaseInterval = Random.Range(0f, maxTimerInterval);
+        ChangeIntervals();
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        float interval = maxTimerInterval;
+        timer += Time.deltaTime;
+        if (timer >= interval) 
+        {
+            ChangeIntervals();
+
+            timer -= interval;
+        }
+
         HungerTimer();
         LifeEssenceTimer();
         IntimacyTimer();
 
         UpdateState();
+    }
+
+    private void ChangeIntervals()
+    {
+        hungerDecreaseInterval = Random.Range(minTimerInterval, maxTimerInterval);
+        essenceDecreaseInterval = Random.Range(minTimerInterval, maxTimerInterval);
+        intimacyDecreaseInterval = Random.Range(minTimerInterval, maxTimerInterval);
     }
 
     private void IntimacyTimer()
@@ -96,19 +112,31 @@ public class PetController : MonoBehaviour
     private void DecreaseHunger()
     {
         hunger -= decreaseHunger;
-        if (hunger < min_value) hunger = min_value;
+        if (hunger < min_value)
+        {
+            hunger = min_value;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     private void DecreaseLifeEssence()
     {
         lifeEssence -= decreaseLifeEssence;
-        if (lifeEssence < min_value) lifeEssence = min_value;
+        if (lifeEssence < min_value) 
+        {
+            lifeEssence = min_value;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     private void DecreaseIntimacy()
     {
         intimacyLevel -= decreaseIntimacyLevel;
-        if (intimacyLevel < min_value) intimacyLevel = min_value;
+        if (intimacyLevel < min_value) 
+        {
+            intimacyLevel = min_value;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     public void IncreaseHungerLevel(int amount)
@@ -116,7 +144,11 @@ public class PetController : MonoBehaviour
         hunger += amount;
         Debug.Log("Increase hunger level by " + amount);
         
-        if (hunger > max_value) hunger = max_value;
+        if (hunger >= max_value) 
+        {
+            hunger = max_value;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     
@@ -125,7 +157,11 @@ public class PetController : MonoBehaviour
         intimacyLevel += amount;
         Debug.Log("Increase intimacy level by " + amount);
 
-        if (intimacyLevel > max_intimacy_level) intimacyLevel = max_intimacy_level;
+        if (intimacyLevel >= max_intimacy_level) 
+        {
+            intimacyLevel = max_intimacy_level;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     
@@ -134,7 +170,11 @@ public class PetController : MonoBehaviour
         lifeEssence += amount;
         Debug.Log("Increase life essence level by " + amount);
 
-        if (lifeEssence > max_value) lifeEssence = max_value;
+        if (lifeEssence >= max_value) 
+        {
+            lifeEssence = max_value;
+            audioManager.PlayMoodChangeSound();
+        }
     }
 
     private void UpdateState()
@@ -165,6 +205,7 @@ public class PetController : MonoBehaviour
                 petImage.sprite = spriteList[5];
                 break;
         }
+
     }
 
 }

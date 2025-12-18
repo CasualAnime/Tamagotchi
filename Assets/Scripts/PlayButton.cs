@@ -5,6 +5,7 @@ public class PlayButton : MonoBehaviour
 {
     [SerializeField] Button thisButton;
     [SerializeField] int intimacyIncrease = 1;
+    [SerializeField] AudioManager audioManager;
 
     void Awake()
     {
@@ -14,6 +15,7 @@ public class PlayButton : MonoBehaviour
     public void OnButtonClick()
     {
         GameManager.Instance.IncreaseIntimacyLevel(intimacyIncrease);
+        audioManager.PlayButtonSound();
     }
 
     public void TurnOff()
